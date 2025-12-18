@@ -4,7 +4,7 @@
   "sideEffects": false,
   "type": "module",
   "scripts": {
-    "dev": "docker compose up -d && until docker exec automaker-starter-kit-db pg_isready -U postgres > /dev/null 2>&1; do echo 'Waiting for postgres...'; sleep 1; done && npm run db:migrate && vite dev",
+    "dev": "[ ! -f .env ] && cp .env.example .env || true && docker compose up -d && until docker exec automaker-starter-kit-db pg_isready -U postgres > /dev/null 2>&1; do echo 'Waiting for postgres...'; sleep 1; done && npm run db:migrate && vite dev",
     "dev:app": "vite dev",
     "build": "vite build && tsc --noEmit",
     "start": "node .output/server/index.mjs",
