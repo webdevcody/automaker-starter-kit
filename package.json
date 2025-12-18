@@ -4,7 +4,8 @@
   "sideEffects": false,
   "type": "module",
   "scripts": {
-    "dev": "vite dev",
+    "dev": "docker compose up -d && until docker exec automaker-starter-kit-db pg_isready -U postgres > /dev/null 2>&1; do echo 'Waiting for postgres...'; sleep 1; done && npm run db:migrate && vite dev",
+    "dev:app": "vite dev",
     "build": "vite build && tsc --noEmit",
     "start": "node .output/server/index.mjs",
     "db:generate": "dotenv -e .env -- drizzle-kit generate",
