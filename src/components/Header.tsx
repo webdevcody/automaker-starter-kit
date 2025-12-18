@@ -56,6 +56,26 @@ export function Header() {
     navigate({ to: "/" });
   };
 
+  const handlePricingClick = async (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (currentPath === "/") {
+      e.preventDefault();
+      const element = document.getElementById("pricing");
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    } else {
+      e.preventDefault();
+      await navigate({ to: "/" });
+      // Scroll to pricing section after navigation
+      setTimeout(() => {
+        const element = document.getElementById("pricing");
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 100);
+    }
+  };
+
   return (
     <header className="sticky top-0 z-40 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="max-w-screen-2xl mx-auto px-8 flex h-14 items-center">
@@ -70,7 +90,7 @@ export function Header() {
             </span>
           </Link>
 
-          {session && (
+          {session ? (
             <nav className="hidden md:flex items-center gap-2 text-sm">
               <Link
                 to={dashboardLink.href}
@@ -102,6 +122,18 @@ export function Header() {
                       : "opacity-0 group-hover:opacity-100"
                   }`}
                 ></span>
+              </Link>
+            </nav>
+          ) : (
+            <nav className="hidden md:flex items-center gap-2 text-sm">
+              <Link
+                to="/"
+                onClick={handlePricingClick}
+                className="relative flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-200 group text-foreground/70 hover:text-foreground"
+              >
+                <span className="relative z-10">Pricing</span>
+                <span className="absolute inset-0 rounded-lg bg-primary/5 transition-opacity duration-200 opacity-0 group-hover:opacity-100"></span>
+                <span className="absolute inset-0 rounded-lg bg-gradient-to-r from-primary/10 to-purple-600/10 blur-sm transition-opacity duration-200 opacity-0 group-hover:opacity-100"></span>
               </Link>
             </nav>
           )}

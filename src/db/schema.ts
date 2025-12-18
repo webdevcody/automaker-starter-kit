@@ -13,6 +13,14 @@ export const user = pgTable("user", {
   isAdmin: boolean("is_admin")
     .$default(() => false)
     .notNull(),
+  // Subscription fields
+  stripeCustomerId: text("stripe_customer_id"),
+  subscriptionId: text("subscription_id"),
+  plan: text("plan")
+    .$default(() => "free")
+    .notNull(),
+  subscriptionStatus: text("subscription_status"),
+  subscriptionExpiresAt: timestamp("subscription_expires_at"),
   createdAt: timestamp("created_at")
     .$defaultFn(() => /* @__PURE__ */ new Date())
     .notNull(),
@@ -106,3 +114,15 @@ export type UpdateUserData = Partial<Omit<CreateUserData, "id" | "createdAt">>;
 export type UserProfile = typeof userProfile.$inferSelect;
 export type CreateUserProfileData = typeof userProfile.$inferInsert;
 export type UpdateUserProfileData = Partial<Omit<CreateUserProfileData, "id">>;
+
+// Subscription types
+export type SubscriptionPlan = "free" | "basic" | "pro";
+export type SubscriptionStatus =
+  | "active"
+  | "canceled"
+  | "past_due"
+  | "unpaid"
+  | "incomplete"
+  | "incomplete_expired"
+  | "trialing"
+  | null;

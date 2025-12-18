@@ -33,6 +33,11 @@ CREATE TABLE "user" (
 	"email_verified" boolean NOT NULL,
 	"image" text,
 	"is_admin" boolean NOT NULL,
+	"stripe_customer_id" text,
+	"subscription_id" text,
+	"plan" text NOT NULL,
+	"subscription_status" text,
+	"subscription_expires_at" timestamp,
 	"created_at" timestamp NOT NULL,
 	"updated_at" timestamp NOT NULL,
 	CONSTRAINT "user_email_unique" UNIQUE("email")
