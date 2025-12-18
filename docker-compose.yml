@@ -1,0 +1,15 @@
+services:
+  full-stack-campus:
+    image: postgres:17
+    restart: always
+    container_name: full-stack-campus-db
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: example
+      PGDATA: /data/postgres
+    volumes:
+      - postgres:/data/postgres
+
+volumes:
+  postgres:
