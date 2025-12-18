@@ -16,18 +16,9 @@ import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DashboardIndexRouteImport } from './routes/dashboard/index'
 import { Route as DashboardSettingsRouteImport } from './routes/dashboard/settings'
-import { Route as DashboardNotificationsRouteImport } from './routes/dashboard/notifications'
-import { Route as DashboardMessagesRouteImport } from './routes/dashboard/messages'
-import { Route as DashboardMembersRouteImport } from './routes/dashboard/members'
-import { Route as DashboardClassroomRouteImport } from './routes/dashboard/classroom'
-import { Route as DashboardCalendarRouteImport } from './routes/dashboard/calendar'
 import { Route as ProfileUserIdIndexRouteImport } from './routes/profile/$userId/index'
-import { Route as DashboardCommunityIndexRouteImport } from './routes/dashboard/community/index'
-import { Route as DashboardCommunityCreatePostRouteImport } from './routes/dashboard/community/create-post'
 import { Route as ApiStripeWebhookRouteImport } from './routes/api/stripe/webhook'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
-import { Route as DashboardCommunityPostPostIdIndexRouteImport } from './routes/dashboard/community/post/$postId/index'
-import { Route as DashboardCommunityPostPostIdEditRouteImport } from './routes/dashboard/community/post/$postId/edit'
 
 const UnauthenticatedRoute = UnauthenticatedRouteImport.update({
   id: '/unauthenticated',
@@ -64,47 +55,11 @@ const DashboardSettingsRoute = DashboardSettingsRouteImport.update({
   path: '/settings',
   getParentRoute: () => DashboardRoute,
 } as any)
-const DashboardNotificationsRoute = DashboardNotificationsRouteImport.update({
-  id: '/notifications',
-  path: '/notifications',
-  getParentRoute: () => DashboardRoute,
-} as any)
-const DashboardMessagesRoute = DashboardMessagesRouteImport.update({
-  id: '/messages',
-  path: '/messages',
-  getParentRoute: () => DashboardRoute,
-} as any)
-const DashboardMembersRoute = DashboardMembersRouteImport.update({
-  id: '/members',
-  path: '/members',
-  getParentRoute: () => DashboardRoute,
-} as any)
-const DashboardClassroomRoute = DashboardClassroomRouteImport.update({
-  id: '/classroom',
-  path: '/classroom',
-  getParentRoute: () => DashboardRoute,
-} as any)
-const DashboardCalendarRoute = DashboardCalendarRouteImport.update({
-  id: '/calendar',
-  path: '/calendar',
-  getParentRoute: () => DashboardRoute,
-} as any)
 const ProfileUserIdIndexRoute = ProfileUserIdIndexRouteImport.update({
   id: '/profile/$userId/',
   path: '/profile/$userId/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DashboardCommunityIndexRoute = DashboardCommunityIndexRouteImport.update({
-  id: '/community/',
-  path: '/community/',
-  getParentRoute: () => DashboardRoute,
-} as any)
-const DashboardCommunityCreatePostRoute =
-  DashboardCommunityCreatePostRouteImport.update({
-    id: '/community/create-post',
-    path: '/community/create-post',
-    getParentRoute: () => DashboardRoute,
-  } as any)
 const ApiStripeWebhookRoute = ApiStripeWebhookRouteImport.update({
   id: '/api/stripe/webhook',
   path: '/api/stripe/webhook',
@@ -115,18 +70,6 @@ const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
   path: '/api/auth/$',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DashboardCommunityPostPostIdIndexRoute =
-  DashboardCommunityPostPostIdIndexRouteImport.update({
-    id: '/community/post/$postId/',
-    path: '/community/post/$postId/',
-    getParentRoute: () => DashboardRoute,
-  } as any)
-const DashboardCommunityPostPostIdEditRoute =
-  DashboardCommunityPostPostIdEditRouteImport.update({
-    id: '/community/post/$postId/edit',
-    path: '/community/post/$postId/edit',
-    getParentRoute: () => DashboardRoute,
-  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -134,40 +77,22 @@ export interface FileRoutesByFullPath {
   '/sign-in': typeof SignInRoute
   '/sign-up': typeof SignUpRoute
   '/unauthenticated': typeof UnauthenticatedRoute
-  '/dashboard/calendar': typeof DashboardCalendarRoute
-  '/dashboard/classroom': typeof DashboardClassroomRoute
-  '/dashboard/members': typeof DashboardMembersRoute
-  '/dashboard/messages': typeof DashboardMessagesRoute
-  '/dashboard/notifications': typeof DashboardNotificationsRoute
   '/dashboard/settings': typeof DashboardSettingsRoute
   '/dashboard/': typeof DashboardIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/api/stripe/webhook': typeof ApiStripeWebhookRoute
-  '/dashboard/community/create-post': typeof DashboardCommunityCreatePostRoute
-  '/dashboard/community': typeof DashboardCommunityIndexRoute
   '/profile/$userId': typeof ProfileUserIdIndexRoute
-  '/dashboard/community/post/$postId/edit': typeof DashboardCommunityPostPostIdEditRoute
-  '/dashboard/community/post/$postId': typeof DashboardCommunityPostPostIdIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/sign-in': typeof SignInRoute
   '/sign-up': typeof SignUpRoute
   '/unauthenticated': typeof UnauthenticatedRoute
-  '/dashboard/calendar': typeof DashboardCalendarRoute
-  '/dashboard/classroom': typeof DashboardClassroomRoute
-  '/dashboard/members': typeof DashboardMembersRoute
-  '/dashboard/messages': typeof DashboardMessagesRoute
-  '/dashboard/notifications': typeof DashboardNotificationsRoute
   '/dashboard/settings': typeof DashboardSettingsRoute
   '/dashboard': typeof DashboardIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/api/stripe/webhook': typeof ApiStripeWebhookRoute
-  '/dashboard/community/create-post': typeof DashboardCommunityCreatePostRoute
-  '/dashboard/community': typeof DashboardCommunityIndexRoute
   '/profile/$userId': typeof ProfileUserIdIndexRoute
-  '/dashboard/community/post/$postId/edit': typeof DashboardCommunityPostPostIdEditRoute
-  '/dashboard/community/post/$postId': typeof DashboardCommunityPostPostIdIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -176,20 +101,11 @@ export interface FileRoutesById {
   '/sign-in': typeof SignInRoute
   '/sign-up': typeof SignUpRoute
   '/unauthenticated': typeof UnauthenticatedRoute
-  '/dashboard/calendar': typeof DashboardCalendarRoute
-  '/dashboard/classroom': typeof DashboardClassroomRoute
-  '/dashboard/members': typeof DashboardMembersRoute
-  '/dashboard/messages': typeof DashboardMessagesRoute
-  '/dashboard/notifications': typeof DashboardNotificationsRoute
   '/dashboard/settings': typeof DashboardSettingsRoute
   '/dashboard/': typeof DashboardIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/api/stripe/webhook': typeof ApiStripeWebhookRoute
-  '/dashboard/community/create-post': typeof DashboardCommunityCreatePostRoute
-  '/dashboard/community/': typeof DashboardCommunityIndexRoute
   '/profile/$userId/': typeof ProfileUserIdIndexRoute
-  '/dashboard/community/post/$postId/edit': typeof DashboardCommunityPostPostIdEditRoute
-  '/dashboard/community/post/$postId/': typeof DashboardCommunityPostPostIdIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -199,40 +115,22 @@ export interface FileRouteTypes {
     | '/sign-in'
     | '/sign-up'
     | '/unauthenticated'
-    | '/dashboard/calendar'
-    | '/dashboard/classroom'
-    | '/dashboard/members'
-    | '/dashboard/messages'
-    | '/dashboard/notifications'
     | '/dashboard/settings'
     | '/dashboard/'
     | '/api/auth/$'
     | '/api/stripe/webhook'
-    | '/dashboard/community/create-post'
-    | '/dashboard/community'
     | '/profile/$userId'
-    | '/dashboard/community/post/$postId/edit'
-    | '/dashboard/community/post/$postId'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/sign-in'
     | '/sign-up'
     | '/unauthenticated'
-    | '/dashboard/calendar'
-    | '/dashboard/classroom'
-    | '/dashboard/members'
-    | '/dashboard/messages'
-    | '/dashboard/notifications'
     | '/dashboard/settings'
     | '/dashboard'
     | '/api/auth/$'
     | '/api/stripe/webhook'
-    | '/dashboard/community/create-post'
-    | '/dashboard/community'
     | '/profile/$userId'
-    | '/dashboard/community/post/$postId/edit'
-    | '/dashboard/community/post/$postId'
   id:
     | '__root__'
     | '/'
@@ -240,20 +138,11 @@ export interface FileRouteTypes {
     | '/sign-in'
     | '/sign-up'
     | '/unauthenticated'
-    | '/dashboard/calendar'
-    | '/dashboard/classroom'
-    | '/dashboard/members'
-    | '/dashboard/messages'
-    | '/dashboard/notifications'
     | '/dashboard/settings'
     | '/dashboard/'
     | '/api/auth/$'
     | '/api/stripe/webhook'
-    | '/dashboard/community/create-post'
-    | '/dashboard/community/'
     | '/profile/$userId/'
-    | '/dashboard/community/post/$postId/edit'
-    | '/dashboard/community/post/$postId/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -318,61 +207,12 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardSettingsRouteImport
       parentRoute: typeof DashboardRoute
     }
-    '/dashboard/notifications': {
-      id: '/dashboard/notifications'
-      path: '/notifications'
-      fullPath: '/dashboard/notifications'
-      preLoaderRoute: typeof DashboardNotificationsRouteImport
-      parentRoute: typeof DashboardRoute
-    }
-    '/dashboard/messages': {
-      id: '/dashboard/messages'
-      path: '/messages'
-      fullPath: '/dashboard/messages'
-      preLoaderRoute: typeof DashboardMessagesRouteImport
-      parentRoute: typeof DashboardRoute
-    }
-    '/dashboard/members': {
-      id: '/dashboard/members'
-      path: '/members'
-      fullPath: '/dashboard/members'
-      preLoaderRoute: typeof DashboardMembersRouteImport
-      parentRoute: typeof DashboardRoute
-    }
-    '/dashboard/classroom': {
-      id: '/dashboard/classroom'
-      path: '/classroom'
-      fullPath: '/dashboard/classroom'
-      preLoaderRoute: typeof DashboardClassroomRouteImport
-      parentRoute: typeof DashboardRoute
-    }
-    '/dashboard/calendar': {
-      id: '/dashboard/calendar'
-      path: '/calendar'
-      fullPath: '/dashboard/calendar'
-      preLoaderRoute: typeof DashboardCalendarRouteImport
-      parentRoute: typeof DashboardRoute
-    }
     '/profile/$userId/': {
       id: '/profile/$userId/'
       path: '/profile/$userId'
       fullPath: '/profile/$userId'
       preLoaderRoute: typeof ProfileUserIdIndexRouteImport
       parentRoute: typeof rootRouteImport
-    }
-    '/dashboard/community/': {
-      id: '/dashboard/community/'
-      path: '/community'
-      fullPath: '/dashboard/community'
-      preLoaderRoute: typeof DashboardCommunityIndexRouteImport
-      parentRoute: typeof DashboardRoute
-    }
-    '/dashboard/community/create-post': {
-      id: '/dashboard/community/create-post'
-      path: '/community/create-post'
-      fullPath: '/dashboard/community/create-post'
-      preLoaderRoute: typeof DashboardCommunityCreatePostRouteImport
-      parentRoute: typeof DashboardRoute
     }
     '/api/stripe/webhook': {
       id: '/api/stripe/webhook'
@@ -388,50 +228,17 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiAuthSplatRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/dashboard/community/post/$postId/': {
-      id: '/dashboard/community/post/$postId/'
-      path: '/community/post/$postId'
-      fullPath: '/dashboard/community/post/$postId'
-      preLoaderRoute: typeof DashboardCommunityPostPostIdIndexRouteImport
-      parentRoute: typeof DashboardRoute
-    }
-    '/dashboard/community/post/$postId/edit': {
-      id: '/dashboard/community/post/$postId/edit'
-      path: '/community/post/$postId/edit'
-      fullPath: '/dashboard/community/post/$postId/edit'
-      preLoaderRoute: typeof DashboardCommunityPostPostIdEditRouteImport
-      parentRoute: typeof DashboardRoute
-    }
   }
 }
 
 interface DashboardRouteChildren {
-  DashboardCalendarRoute: typeof DashboardCalendarRoute
-  DashboardClassroomRoute: typeof DashboardClassroomRoute
-  DashboardMembersRoute: typeof DashboardMembersRoute
-  DashboardMessagesRoute: typeof DashboardMessagesRoute
-  DashboardNotificationsRoute: typeof DashboardNotificationsRoute
   DashboardSettingsRoute: typeof DashboardSettingsRoute
   DashboardIndexRoute: typeof DashboardIndexRoute
-  DashboardCommunityCreatePostRoute: typeof DashboardCommunityCreatePostRoute
-  DashboardCommunityIndexRoute: typeof DashboardCommunityIndexRoute
-  DashboardCommunityPostPostIdEditRoute: typeof DashboardCommunityPostPostIdEditRoute
-  DashboardCommunityPostPostIdIndexRoute: typeof DashboardCommunityPostPostIdIndexRoute
 }
 
 const DashboardRouteChildren: DashboardRouteChildren = {
-  DashboardCalendarRoute: DashboardCalendarRoute,
-  DashboardClassroomRoute: DashboardClassroomRoute,
-  DashboardMembersRoute: DashboardMembersRoute,
-  DashboardMessagesRoute: DashboardMessagesRoute,
-  DashboardNotificationsRoute: DashboardNotificationsRoute,
   DashboardSettingsRoute: DashboardSettingsRoute,
   DashboardIndexRoute: DashboardIndexRoute,
-  DashboardCommunityCreatePostRoute: DashboardCommunityCreatePostRoute,
-  DashboardCommunityIndexRoute: DashboardCommunityIndexRoute,
-  DashboardCommunityPostPostIdEditRoute: DashboardCommunityPostPostIdEditRoute,
-  DashboardCommunityPostPostIdIndexRoute:
-    DashboardCommunityPostPostIdIndexRoute,
 }
 
 const DashboardRouteWithChildren = DashboardRoute._addFileChildren(

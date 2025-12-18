@@ -342,7 +342,7 @@ Required environment variables for authentication:
 
 ```bash
 # Database
-DATABASE_URL="postgresql://user:password@localhost:5432/dbname"
+DATABASE_URL="postgresql://user:password@localhost:5433/dbname"
 
 # Better Auth (auto-generated)
 BETTER_AUTH_SECRET="your-secret-key"

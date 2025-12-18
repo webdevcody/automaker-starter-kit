@@ -4,8 +4,6 @@ import { updateUserProfileFn, deleteUserAccountFn } from "~/fn/storage";
 import {
   updateMyProfileFn,
   updateBioFn,
-  updateSkillsFn,
-  toggleProfileVisibilityFn,
 } from "~/fn/profiles";
 import { authClient } from "~/lib/auth-client";
 import { useNavigate } from "@tanstack/react-router";
@@ -56,22 +54,6 @@ export function usePublicProfile(userId: string) {
   return useQuery(publicProfileQueryOptions(userId));
 }
 
-// Hook for updating extended profile (bio, skills, social links, etc.)
-export function useUpdateExtendedProfile() {
-  const queryClient = useQueryClient();
-
-  return useMutation({
-    mutationFn: updateMyProfileFn,
-    onSuccess: () => {
-      toast.success("Profile updated successfully");
-      queryClient.invalidateQueries({ queryKey: ["my-profile"] });
-    },
-    onError: () => {
-      toast.error("Failed to update profile");
-    },
-  });
-}
-
 // Hook for updating bio only
 export function useUpdateBio() {
   const queryClient = useQueryClient();
@@ -84,38 +66,6 @@ export function useUpdateBio() {
     },
     onError: () => {
       toast.error("Failed to update bio");
-    },
-  });
-}
-
-// Hook for updating skills only
-export function useUpdateSkills() {
-  const queryClient = useQueryClient();
-
-  return useMutation({
-    mutationFn: updateSkillsFn,
-    onSuccess: () => {
-      toast.success("Skills updated successfully");
-      queryClient.invalidateQueries({ queryKey: ["my-profile"] });
-    },
-    onError: () => {
-      toast.error("Failed to update skills");
-    },
-  });
-}
-
-// Hook for toggling profile visibility
-export function useToggleProfileVisibility() {
-  const queryClient = useQueryClient();
-
-  return useMutation({
-    mutationFn: toggleProfileVisibilityFn,
-    onSuccess: (data) => {
-      toast.success(data.isPublic ? "Profile is now public" : "Profile is now private");
-      queryClient.invalidateQueries({ queryKey: ["my-profile"] });
-    },
-    onError: () => {
-      toast.error("Failed to update profile visibility");
     },
   });
 }

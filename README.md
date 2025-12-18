@@ -35,7 +35,7 @@ An online community and training platform for aspiring full stack engineers. Mas
 
 ```bash
 git clone <repository-url>
-cd full-stack-campus
+cd automaker-starter-kit
 ```
 
 ### 2. Install dependencies

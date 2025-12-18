@@ -3,12 +3,10 @@ import { database } from "~/db";
 import {
   userProfile,
   user,
-  portfolioItem,
   type UserProfile,
   type CreateUserProfileData,
   type UpdateUserProfileData,
   type User,
-  type PortfolioItem,
 } from "~/db/schema";
 
 export type ProfileWithUser = UserProfile & {
@@ -18,7 +16,6 @@ export type ProfileWithUser = UserProfile & {
 export type PublicProfile = {
   user: Pick<User, "id" | "name" | "image" | "createdAt">;
   profile: UserProfile | null;
-  portfolioItems: PortfolioItem[];
 };
 
 /**
@@ -41,7 +38,6 @@ export async function getUserProfile(
         .insert(userProfile)
         .values({
           id: userId,
-          isPublic: true,
           updatedAt: new Date(),
         })
         .returning();
@@ -105,17 +101,7 @@ export async function updateUserBio(
 }
 
 /**
- * Update user skills
- */
-export async function updateUserSkills(
-  userId: string,
-  skills: string[]
-): Promise<UserProfile> {
-  return updateUserProfile(userId, { skills });
-}
-
-/**
- * Get public profile with user info and portfolio items
+ * Get public profile with user info
  */
 export async function getPublicProfile(
   userId: string
@@ -144,41 +130,11 @@ export async function getPublicProfile(
     return {
       user: userData,
       profile: null,
-      portfolioItems: [],
     };
-  }
-
-  // Check if profile is private
-  if (!profile.isPublic) {
-    return null;
-  }
-
-  // Get portfolio items
-  let portfolioItems: PortfolioItem[] = [];
-  try {
-    portfolioItems = await database
-      .select()
-      .from(portfolioItem)
-      .where(eq(portfolioItem.userId, userId))
-      .orderBy(portfolioItem.createdAt);
-  } catch (error: any) {
-    // If query fails, return empty array
-    portfolioItems = [];
   }
 
   return {
     user: userData,
     profile,
-    portfolioItems,
   };
-}
-
-/**
- * Toggle profile visibility
- */
-export async function toggleProfileVisibility(
-  userId: string,
-  isPublic: boolean
-): Promise<UserProfile> {
-  return updateUserProfile(userId, { isPublic });
 }

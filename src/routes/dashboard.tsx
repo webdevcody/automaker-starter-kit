@@ -5,18 +5,7 @@ import {
   useRouterState,
 } from "@tanstack/react-router";
 import { cn } from "~/lib/utils";
-import {
-  BookOpen,
-  Users,
-  CalendarDays,
-  UserCircle,
-  MessageSquare,
-  Bell,
-  Settings,
-  LayoutDashboard,
-  ChevronLeft,
-  ChevronRight,
-} from "lucide-react";
+import { LayoutDashboard, ChevronLeft, ChevronRight } from "lucide-react";
 import { authClient } from "~/lib/auth-client";
 import { redirect } from "@tanstack/react-router";
 import { DashboardBackground } from "~/components/DashboardBackground";
@@ -47,41 +36,6 @@ const navItems: NavItem[] = [
     title: "Overview",
     href: "/dashboard",
     icon: LayoutDashboard,
-  },
-  {
-    title: "Classroom",
-    href: "/dashboard/classroom",
-    icon: BookOpen,
-  },
-  {
-    title: "Community",
-    href: "/dashboard/community",
-    icon: Users,
-  },
-  {
-    title: "Calendar",
-    href: "/dashboard/calendar",
-    icon: CalendarDays,
-  },
-  {
-    title: "Members",
-    href: "/dashboard/members",
-    icon: UserCircle,
-  },
-  {
-    title: "Messages",
-    href: "/dashboard/messages",
-    icon: MessageSquare,
-  },
-  {
-    title: "Notifications",
-    href: "/dashboard/notifications",
-    icon: Bell,
-  },
-  {
-    title: "Settings",
-    href: "/dashboard/settings",
-    icon: Settings,
   },
 ];
 

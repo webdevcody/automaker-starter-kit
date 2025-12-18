@@ -1,8 +1,6 @@
 import { Link, useNavigate, useRouterState } from "@tanstack/react-router";
 import { authClient } from "~/lib/auth-client";
 import { ModeToggle } from "./mode-toggle";
-import { NotificationBell } from "./NotificationBell";
-import { MessagesBell } from "./MessagesBell";
 import { Button, buttonVariants } from "./ui/button";
 import {
   LogOut,
@@ -11,12 +9,6 @@ import {
   Settings,
   Code,
   LayoutDashboard,
-  BookOpen,
-  Users,
-  CalendarDays,
-  UserCircle,
-  MessageSquare,
-  Bell,
 } from "lucide-react";
 import { UserAvatar } from "./UserAvatar";
 import {
@@ -43,36 +35,6 @@ const navItems = [
     title: "Overview",
     href: "/dashboard",
     icon: LayoutDashboard,
-  },
-  {
-    title: "Classroom",
-    href: "/dashboard/classroom",
-    icon: BookOpen,
-  },
-  {
-    title: "Community",
-    href: "/dashboard/community",
-    icon: Users,
-  },
-  {
-    title: "Calendar",
-    href: "/dashboard/calendar",
-    icon: CalendarDays,
-  },
-  {
-    title: "Members",
-    href: "/dashboard/members",
-    icon: UserCircle,
-  },
-  {
-    title: "Messages",
-    href: "/dashboard/messages",
-    icon: MessageSquare,
-  },
-  {
-    title: "Notifications",
-    href: "/dashboard/notifications",
-    icon: Bell,
   },
   {
     title: "Settings",
@@ -216,8 +178,6 @@ export function Header() {
               </div>
             ) : session ? (
               <>
-                <MessagesBell />
-                <NotificationBell />
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
                     <Button
