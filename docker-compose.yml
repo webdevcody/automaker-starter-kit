@@ -7,16 +7,9 @@ services:
       - 5432:5432
     environment:
       POSTGRES_PASSWORD: example
-      POSTGRES_HOST_AUTH_METHOD: trust
       PGDATA: /data/postgres
     volumes:
       - postgres:/data/postgres
-      - ./pg_hba.conf:/etc/postgresql/pg_hba.conf
-    command: >
-      postgres
-      -c ssl=off
-      -c listen_addresses='*'
-      -c hba_file=/etc/postgresql/pg_hba.conf
 
 volumes:
   postgres:
